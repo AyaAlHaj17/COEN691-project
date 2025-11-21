@@ -1,0 +1,28 @@
+Tuning Logs
+
+Model one:
+- Lambda: 100
+- Adam (both models): 1e-4
+- Image size 128x128
+
+Results:
+- PSNR: 25.54
+- Loss was not tracked
+
+Model two:
+- Lambda: 40
+- Adam (both models): 1e-4
+- Image size 64x64
+
+Results:
+- PSNR: 27.58
+- Loss was not tracked
+
+Model three:
+- Lambda: 80
+- Adam (both models): 1e-4
+- Image size 64x64
+
+Results:
+- PSNR: 27.76
+- Discriminator Validation Loss: 2104 - Divergent
