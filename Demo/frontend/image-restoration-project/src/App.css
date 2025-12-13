@@ -1,0 +1,311 @@
+/* App.css - Modern Image Restoration Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  color: #e0e0e0;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 40px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.controls {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #b0b0b0;
+}
+
+.controls select {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  color: #fff;
+  backdrop-filter: blur(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23b0b0b0' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 16px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+}
+
+.controls select:hover {
+  border-color: rgba(102, 126, 234, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.controls select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+}
+
+.selected-info {
+  padding: 12px 20px;
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.selected-info strong {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.drop-zone {
+  width: 100%;
+  max-width: 600px;
+  min-height: 280px;
+  border: 3px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  padding: 60px 40px;
+  text-align: center;
+  color: #b0b0b0;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.drop-zone::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.drop-zone:hover {
+  border-color: rgba(102, 126, 234, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.drop-zone:hover::before {
+  opacity: 1;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.drop-zone.dragging {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+  transform: scale(1.02);
+}
+
+.drop-zone p {
+  font-size: 1.1rem;
+  margin: 0 0 20px 0;
+  font-weight: 400;
+}
+
+.drop-zone p:last-of-type {
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 0;
+}
+
+.file-input-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  margin-top: 24px;
+  user-select: none;
+}
+
+.file-input-label:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+}
+
+.file-input-label:active {
+  transform: translateY(0);
+}
+
+.file-list {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 40px;
+}
+
+.file-list h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.file-list ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.file-list li {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  font-size: 0.95rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.file-list li:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(102, 126, 234, 0.3);
+  transform: translateX(4px);
+}
+
+.file-list li strong {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.submitButton {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px 40px;
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: 600;
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 12px 35px rgba(74, 222, 128, 0.4);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(20px);
+  margin-top: 24px;
+}
+
+.submitButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.submitButton:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(74, 222, 128, 0.6);
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%);
+}
+
+.submitButton:hover::before {
+  left: 100%;
+}
+
+.submitButton:active {
+  transform: translateY(-2px);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  box-shadow: 0 8px 25px rgba(107, 114, 128, 0.3);
+}
+
+.submitButton:disabled::before {
+  display: none;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app {
+    padding: 20px 16px;
+  }
+
+  .drop-zone {
+    min-height: 240px;
+    padding: 40px 24px;
+  }
+
+  .file-input-label {
+    padding: 14px 24px;
+    font-size: 0.95rem;
+  }
+}
