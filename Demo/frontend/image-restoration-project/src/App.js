@@ -93,24 +93,24 @@ function App() {
   return (
     <div className="app">
       <h1>Restore AI</h1>
+      {false ?
+        <div className="controls">
+          <label>
+            Choose option:
+            <select value={selectedOption} onChange={handleSelectChange}>
+              <option value="Pix2PixGan">Pix2Pix GAN</option>
+              <option value="U-Net">U-Net</option>
+              <option value="DNCNN">DNCNN</option>
+              <option value="ResNet">RESNET</option>
+              <option value="DCGAN">DCGAN</option>
+            </select>
+          </label>
 
-      <div className="controls">
-        <label>
-          Choose option:
-          <select value={selectedOption} onChange={handleSelectChange}>
-            <option value="Pix2PixGan">Pix2Pix GAN</option>
-            <option value="U-Net">U-Net</option>
-            <option value="DNCNN">DNCNN</option>
-            <option value="ResNet">RESNET</option>
-            <option value="DCGAN">DCGAN</option>
-          </select>
-        </label>
-
-        <p className="selected-info">
-          Selected option: <strong>{selectedOption}</strong>
-        </p>
-      </div>
-
+          <p className="selected-info">
+            Selected option: <strong>{selectedOption}</strong>
+          </p>
+        </div>
+        : null}
       <div
         className={`drop-zone ${isDragging ? "dragging" : ""}`}
         onDragOver={handleDragOver}

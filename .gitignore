@@ -1,7 +1,8 @@
 
 __pycache__/
 *.pyc
-.venv/
+my_env/
 .ipynb_checkpoints/
 data/
+server/models/pix2pix_gan
 .DS_Store
